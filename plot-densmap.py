@@ -3,17 +3,17 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
-def convert_units(data, unit):
+def convert_units(data, unit, molar_mass):
     """Convert number density (molecules/nm^3) to desired unit."""
     if unit == "nm-3":
         return data, "Number density (molecules / nm³)"
     elif unit == "kg/m3":
         # kg/m³ conversion
-        factor = (16e-3) / (6.022e23 * 1e-27)
+        factor = (molar_mass*1e-3) / (6.022e23 * 1e-27)
         return data * factor, "Mass density (kg/m³)"
     elif unit == "g/cm3":
         # g/cm³ conversion
-        factor = 16 / (6.022e23 * 1e-21)
+        factor = molar_mass / (6.022e23 * 1e-21)
         return data * factor, "Mass density (g/cm³)"
     else:
         raise ValueError("Unknown unit. Choose from: nm-3, kg/m3, g/cm3")
@@ -30,6 +30,8 @@ def main():
                    help="Axis that was averaged over in gmx densmap")
     p.add_argument("--unit", choices=["nm-3", "kg/m3", "g/cm3"], default="g/cm3",
                    help="Output unit for density (default: g/cm3)")
+    p.add_argument("--molar-mass", type=float, required=True,
+                   help="Molecular mass in g/mol (e.g., 18.015 for water)")
     p.add_argument("--out", default="densmap.png", help="Output PNG filename")
     args = p.parse_args()
 
