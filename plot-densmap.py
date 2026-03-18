@@ -62,7 +62,7 @@ def main():
     axis2 = np.linspace(0, L2, n2, endpoint=False) + 0.5 * L2 / n2
 
     # Convert units
-    rho, label = convert_units(dm, args.unit)
+    rho, label = convert_units(dm, args.unit, args.molar_mass)
 
     # Plot
     plt.figure(figsize=(7,5))
