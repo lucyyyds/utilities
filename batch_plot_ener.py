@@ -6,7 +6,6 @@ import argparse
 import os
 import pandas as pd
 import matplotlib
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 COLS = [
@@ -131,6 +130,7 @@ def main():
         plt.title(f"{ycol} from multiple folders")
         plt.legend(fontsize=8, ncol=2)
         plt.tight_layout()
+        plt.show()
 
         outfile = f"{args.prefix}_{ycol}.png"
         plt.savefig(outfile, dpi=300)
