@@ -102,7 +102,7 @@ def main():
     p.add_argument("--cmap", default="viridis", help="Matplotlib colormap")
     p.add_argument("--vmin", type=float, default=None, help="Minimum color scale")
     p.add_argument("--vmax", type=float, default=None, help="Maximum color scale")
-    p.add_argument("--out", default="densmap.png", help="Output PNG filename"
+    p.add_argument("--out", default="densmap.png", help="Output PNG filename")
     args = p.parse_args()
 
     if args.unit in ["kg/m3", "g/cm3"] and args.molar_mass is None:
